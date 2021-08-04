@@ -1,0 +1,43 @@
+{% extends 'research/base.html' %}
+
+{% block research_content %}
+
+<div class="container">
+    <div class="row featurette">
+        <h3 id="research">Peer-reviewed Journal Articles</h3>
+        {% if latest_journal_list %}
+            <ul id="research">
+            {% for journal in latest_journal_list %}
+                <li id="research">
+                            <img src="{{ journal.image.url }}" id="research">
+                            <h4>{{ journal.journal }}</h4>
+                            <h5>{{ journal.title }}</h5>
+                            <a href="{% url 'research:journal_detail' journal.id %}">Read More</a>
+                        </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No journals are available.</p>
+        {% endif %}
+    </div>
+
+    <div class="row featurette">
+        <h3 id="research">Encyclopedia Chapters</h3>
+        {% if latest_chapter_list %}
+            <ul id="research">
+            {% for chapter in latest_chapter_list %}
+                <li id="research">
+                            <img src="{{ chapter.image.url }}" id="research">
+                            <h4>{{ chapter.journal }}</h4>
+                            <h5>{{ chapter.title }}</h5>
+                            <a href="{% url 'research:chapter_detail' chapter.id %}">Read More</a>
+                        </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No encyclopedia chapters are available.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
